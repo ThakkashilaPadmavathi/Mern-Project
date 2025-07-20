@@ -53,7 +53,7 @@ const Login = () => {
 
       toast.success(res.data.message)
       dispatch(signInSuccess(res.data))
-      navigate("/")
+      navigate("/home")
     } catch (error) {
       toast.error(error.message)
       dispatch(signInFailure(error.message))

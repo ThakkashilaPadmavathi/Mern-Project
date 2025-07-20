@@ -7,7 +7,7 @@ import cors from "cors"
 dotenv.config()
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect("mongodb://localhost:27017/noteapp")
   .then(() => {
     console.log("Connected to mongoDB")
   })

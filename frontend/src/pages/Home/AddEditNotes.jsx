@@ -97,31 +97,29 @@ const AddEditNotes = ({ onClose, noteData, type, getAllNotes }) => {
         <MdClose className="text-xl text-slate-400" />
       </button>
       <div className="flex flex-col gap-2">
-        <label className="input-label text-red-400 uppercase">Title</label>
+        <label className="input-label text-red-400 uppercase">Title...</label>
 
         <input
           type="text"
-          className="text-2xl text-slate-950 outline-none"
-          placeholder="Wake up at 6 a.m."
+          className="text-2xl text-slate-950 bg-slate-50 p-2 rounded"
           value={title}
           onChange={({ target }) => setTitle(target.value)}
         />
       </div>
       <div className="flex flex-col gap-2 mt-4">
-        <label className="input-label text-red-400 uppercase">Content</label>
+        <label className="input-label text-red-400 uppercase">Content...</label>
 
         <textarea
           type="text"
           className="text-sm text-slate-950 outline-none bg-slate-50 p-2 rounded"
-          placeholder="Content..."
-          rows={10}
+          rows={5}
           value={content}
           onChange={({ target }) => setContent(target.value)}
         />
       </div>
 
       <div className="mt-3">
-        <label className="input-label text-red-400 uppercase">tags</label>
+        <label className="input-label text-red-400 uppercase">Tags...</label>
         <TagInput tags={tags} setTags={setTags} />
       </div>
 

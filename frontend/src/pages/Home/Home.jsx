@@ -165,18 +165,9 @@ const Home = () => {
             ))}
           </div>
         ) : (
-          <EmptyCard
-            imgSrc={
-              isSearch
-                ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtakcQoMFXwFwnlochk9fQSBkNYkO5rSyY9A&s"
-                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDCtZLuixBFGTqGKdWGLaSKiO3qyhW782aZA&s"
-            }
-            message={
-              isSearch
-                ? "Oops! No Notes found matching your search"
-                : `Ready to capture your ideas? Click the 'Add' button to start noting down your thoughts, inspiration and reminders. Let's get started!`
-            }
-          />
+            <p className="text-gray-500 text-center italic mt-8 text-lg">
+              You haven't added any notes yet.
+            </p>
         )}
       </div>
 

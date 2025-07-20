@@ -51,7 +51,7 @@ const Signup = () => {
 
       setError("")
 
-      navigate("/login")
+      navigate("/")
     } catch (error) {
       toast.error(error.message)
       console.log(error.message)
@@ -96,7 +96,7 @@ const Signup = () => {
             <p className="text-sm text-center mt-4">
               Already have an account?{" "}
               <Link
-                to={"/login"}
+                to={"/"}
                 className="font-medium text-[#2B85FF] underline"
               >
                 Login
