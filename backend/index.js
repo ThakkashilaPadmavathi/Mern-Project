@@ -20,7 +20,7 @@ const app = express()
 // to make input as json
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({ origin: "https://mern-project-eight-tan.vercel.app/", credentials: true }))
+app.use(cors({ origin: "https://mern-project-eight-tan.vercel.app", credentials: true }))
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
