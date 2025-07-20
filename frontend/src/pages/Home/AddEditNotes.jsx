@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { MdClose } from "react-icons/md"
-import TagInput from "../../components/Input/TagInput "
-import axios from "axios"
+import TagInput from "../../components/Input/TagInput"
+import api from "../../utils/axios"
 import { toast } from "react-toastify"
 
 const AddEditNotes = ({ onClose, noteData, type, getAllNotes }) => {
@@ -10,22 +10,18 @@ const AddEditNotes = ({ onClose, noteData, type, getAllNotes }) => {
   const [tags, setTags] = useState(noteData?.tags || [])
   const [error, setError] = useState(null)
 
-  //   Edit Note
+  // Edit Note
   const editNote = async () => {
     const noteId = noteData._id
-    console.log(noteId)
 
     try {
-      const res = await axios.post(
-        "https://mern-project-gssm.onrender.com/api/note/edit/" + noteId,
-        { title, content, tags },
-        { withCredentials: true }
-      )
-
-      console.log(res.data)
+      const res = await api.post(`/note/edit/${noteId}`, {
+        title,
+        content,
+        tags,
+      })
 
       if (res.data.success === false) {
-        console.log(res.data.message)
         setError(res.data.message)
         toast.error(res.data.message)
         return
@@ -35,26 +31,23 @@ const AddEditNotes = ({ onClose, noteData, type, getAllNotes }) => {
       getAllNotes()
       onClose()
     } catch (error) {
-      toast.error(error.message)
-      console.log(error.message)
-      setError(error.message)
+      toast.error(error.response?.data?.message || error.message)
+      setError(error.response?.data?.message || error.message)
     }
   }
 
-  //   Add Note
+  // Add Note
   const addNewNote = async () => {
     try {
-      const res = await axios.post(
-        "https://mern-project-gssm.onrender.com/api/note/add",
-        { title, content, tags },
-        { withCredentials: true }
-      )
+      const res = await api.post("/note/add", {
+        title,
+        content,
+        tags,
+      })
 
       if (res.data.success === false) {
-        console.log(res.data.message)
         setError(res.data.message)
         toast.error(res.data.message)
-
         return
       }
 
@@ -62,9 +55,8 @@ const AddEditNotes = ({ onClose, noteData, type, getAllNotes }) => {
       getAllNotes()
       onClose()
     } catch (error) {
-      toast.error(error.message)
-      console.log(error.message)
-      setError(error.message)
+      toast.error(error.response?.data?.message || error.message)
+      setError(error.response?.data?.message || error.message)
     }
   }
 
@@ -98,7 +90,6 @@ const AddEditNotes = ({ onClose, noteData, type, getAllNotes }) => {
       </button>
       <div className="flex flex-col gap-2">
         <label className="input-label text-red-400 uppercase">Title...</label>
-
         <input
           type="text"
           className="text-2xl text-slate-950 bg-slate-50 p-2 rounded"
@@ -108,9 +99,7 @@ const AddEditNotes = ({ onClose, noteData, type, getAllNotes }) => {
       </div>
       <div className="flex flex-col gap-2 mt-4">
         <label className="input-label text-red-400 uppercase">Content...</label>
-
         <textarea
-          type="text"
           className="text-sm text-slate-950 outline-none bg-slate-50 p-2 rounded"
           rows={5}
           value={content}
